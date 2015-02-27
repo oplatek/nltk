@@ -21,6 +21,7 @@ from pprint import pformat
 
 from nltk.tree import Tree
 from nltk.compat import python_2_unicode_compatible, string_types
+import subprocess
 
 
 #################################################################
@@ -158,7 +159,7 @@ class DependencyGraph(object):
 
     def _repr_svg_(self):
         """Ipython magic: show SVG representation of the transducer"""
-        dot_string = self.draw_dot()
+        dot_string = self.to_dot()
         format = 'svg'
         try:
             process = subprocess.Popen(['dot', '-T%s' % format], stdin=subprocess.PIPE,
